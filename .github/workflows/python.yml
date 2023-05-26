@@ -45,6 +45,11 @@ jobs:
     needs: build
 
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
       - name: send message
         uses: appleboy/telegram-action@master
         with:
@@ -55,5 +60,7 @@ jobs:
             Commit message: ${{ github.event.commits[0].message }}
             
             Repository: ${{ github.repository }}
+            
+            Branch: ${{ steps.extract_branch.outputs.branch }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
