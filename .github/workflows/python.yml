@@ -46,7 +46,7 @@ jobs:
 
     steps:
       - name: send message
-        uses: appleboy/telegram-action@master
+        uses: appleboy/telegram-action@main
         with:
           to: http://t.me/middle_python_12_bot
           token: 6090398169:AAHauTaukL7HEkWq6GjLAaDEtESscItyCiI
