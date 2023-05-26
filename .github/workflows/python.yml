@@ -48,7 +48,7 @@ jobs:
       - name: send message
         uses: appleboy/telegram-action@master
         with:
-          to: "https://t.me/middle_python_12_bot"
+          to: "377193782"
           token: "6090398169:AAHauTaukL7HEkWq6GjLAaDEtESscItyCiI"
           message: |
             ${{ github.actor }} created commit:
