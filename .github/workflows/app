@@ -1,0 +1,42 @@
+name: Build and deploy iOS release
+on:
+  push:
+    branches: [feat/fastlane2.0]
+jobs:
+  testFlight-build:
+    name: iOS-testFlight-build
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Checkout to git repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          yarn install
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.4
+      - name: Install dependencies
+        run: |
+          yarn install
+      - name: Install Fastlane
+        run: |
+          bundle install
+      - name: Build and upload to TestFlight
+        run: |
+          cd ios && pod cache clean --all && arch -x86_64 pod install && cd ..
+          bundle exec fastlane ios beta
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APP_STORE_EMAIL: ${{ secrets.APP_STORE_EMAIL }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          IOS_DISTRIBUTION_CERTS_GITHUB_URL: ${{ secrets.IOS_DISTRIBUTION_CERTS_GITHUB_URL }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          KEYCHAIN_NAME: ${{ secrets.KEYCHAIN_NAME }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
