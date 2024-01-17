@@ -1,0 +1,28 @@
+name: Build and push
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master-gpn-onpremise
+    paths-ignore:
+      - '.github/**'
+
+jobs:
+  push_to_gitflic:
+    name: Push commits to GitFlic
+    runs-on: self-hosted
+    steps:
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: e727d235-273d-492c-8236-8d27f77e4a32
+        with:
+          source-directory: .
+          destination-github-username: 'gitflic.ru/company/simple-charge'
+          destination-repository-name: 'simple-solution-api'
+          user-email: commit-from-github@liis.su
+          target-branch: master
+      
+      - name: Test get variable exported by push-to-another-repository
+        run: echo $DESTINATION_CLONED_DIRECTORY
