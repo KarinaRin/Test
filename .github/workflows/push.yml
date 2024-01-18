@@ -34,11 +34,9 @@ jobs:
       - name: Pushes to another repository
         shell: bash
         run: |
-          echo $(cat .git/config)
-          git remote add gitflic git@gitflic.ru:simple-charge/test.git
-          echo $(cat .git/config)
+          git remote add gitflic git@gitflic.ru:simple-charge/test.gitdd
           cat .git/config
-          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push --force gitflic ${{ github.ref }}:master
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" git push --force gitflic ${{ github.ref }}:master
       
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
