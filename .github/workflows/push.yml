@@ -11,7 +11,7 @@ on:
 jobs:
   push_to_gitflic:
     name: Push commits to GitFlic
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Put ssh key
         shell: bash
