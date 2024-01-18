@@ -36,6 +36,8 @@ jobs:
         run: |
           echo $(cat .git/config)
           git remote add gitflic git@gitflic.ru:simple-charge/test.git
+          echo $(cat .git/config)
+          cat .git/config
           GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push --force gitflic ${{ github.ref }}:master
       
       - name: Test get variable exported by push-to-another-repository
