@@ -34,8 +34,10 @@ jobs:
       - name: Resolve conflicts between github and gitflic repositories
         run: |
           git remote add gitflic git@gitflic.ru:simple-charge/test.git
-          git pull gitflic master-from-gitflic
+          git checkout -b master-from-gitflic
+          git pull gitflic master
           git branch
+          git checkout ${{ github.ref }}
           git rebase master-from-gitflic
           cat .git/config
       
