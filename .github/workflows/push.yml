@@ -25,6 +25,7 @@ jobs:
         run: |
           git init
           git remote add gitflic git@gitflic.ru:simple-charge/${{ github.event.repository.name }}.git
+          echo $(cat .git/config) 
           git branch -m main master
           git push -u gitflic --all
       
