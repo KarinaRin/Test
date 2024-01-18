@@ -31,7 +31,7 @@ jobs:
 
       - name: Resolve conflicts between github and gitflic repositories
         run: |
-          git remote add gitflic-1 https://commit-from-github-liis-su:cVJztS8bLkG6b@?Jm?wa@gitflic.ru/project/simple-charge/test.git
+          git remote add gitflic-1 https://commit-from-github-liis-su:"${{ secrets.GITFLIC_PASSWORD }}"@gitflic.ru/project/simple-charge/test.git
           git checkout -b master-from-gitflic
           git pull gitflic-1 master
           git branch
