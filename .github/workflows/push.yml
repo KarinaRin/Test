@@ -25,7 +25,7 @@ jobs:
         run: |
           git remote add gitflic-1 'https://commit-from-github-liis-su:${{ secrets.GITFLIC_PASSWORD }}@gitflic.ru/project/simple-charge/test.git'
           git checkout -b master-from-gitflic
-          git pull gitflic-1 master:master-from-gitflic
+          git pull gitflic-1 master
           git branch
           git checkout ${{ github.ref }}
           git rebase master-from-gitflic
