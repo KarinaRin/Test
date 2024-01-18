@@ -28,7 +28,7 @@ jobs:
           git config --global user.email "commit-from-github@liis.su"
           git config --global user.name "commit-from-github-liis-su"
           rm -r .github
-          git add -A
+          git add .
           git commit -m 'fix'
       
       - name: Pushes to another repository
