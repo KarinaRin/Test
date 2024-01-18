@@ -41,8 +41,7 @@ jobs:
           # rm -r .github
           # git add .
           # git commit -m 'fix'
-          git gc
-          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push gitflic ${{ github.ref }}:main
+          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push --no-thin gitflic ${{ github.ref }}:main
       
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
