@@ -13,20 +13,25 @@ jobs:
     name: Push commits to GitFlic
     runs-on: ubuntu-latest
     steps:
+      - name: "Checkout code"
+          uses: actions/checkout@v2
+
       - name: Put ssh key
         shell: bash
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.GITFLIC_SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
+          echo "${{ secrets.GITFLIC_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
       
       - name: Pushes to another repository
         shell: bash
         run: |
           git init
           git remote add gitflic git@gitflic.ru:simple-charge/${{ github.event.repository.name }}.git
-          echo $(cat .git/config) 
-          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push -u gitflic --all
+          rm -r .github
+          git add .
+          git commit -m 'fix'
+          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push --force gitflic master
       
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
