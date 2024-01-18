@@ -22,17 +22,25 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.GITFLIC_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-      
-      - name: Pushes to another repository
-        shell: bash
+          
+      - name: Delete dir .github/
         run: |
-          git init
-          git remote add gitflic git@gitflic.ru:simple-charge/test.git
           git config --global user.email "commit-from-github@liis.su"
           git config --global user.name "commit-from-github-liis-su"
           rm -r .github
           git add .
           git commit -m 'fix'
+      
+      - name: Pushes to another repository
+        shell: bash
+        run: |
+          # git init
+          git remote add gitflic git@gitflic.ru:simple-charge/test.git
+          # git config --global user.email "commit-from-github@liis.su"
+          # git config --global user.name "commit-from-github-liis-su"
+          # rm -r .github
+          # git add .
+          # git commit -m 'fix'
           GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push --force gitflic ${{ github.ref }}:main
       
       - name: Test get variable exported by push-to-another-repository
