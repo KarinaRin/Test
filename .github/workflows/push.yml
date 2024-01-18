@@ -29,8 +29,8 @@ jobs:
           git init
           git remote add gitflic git@gitflic.ru:simple-charge/${{ github.event.repository.name }}.git
           rm -r .github
-          git add .
-          git commit -m 'fix'
+          # git add .
+          # git commit -m 'fix'
           GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push --force gitflic master
       
       - name: Test get variable exported by push-to-another-repository
