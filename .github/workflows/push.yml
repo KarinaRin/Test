@@ -34,7 +34,7 @@ jobs:
       - name: Pushes to another repository
         shell: bash
         run: |
-          git remote add gitflic git@gitflic.ru:simple-charge/test.gitdd
+          git remote add gitflic git@gitflic.ru:simple-charge/test.git
           cat .git/config
           GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" git push --force gitflic ${{ github.ref }}:master
       
