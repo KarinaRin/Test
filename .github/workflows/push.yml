@@ -26,7 +26,6 @@ jobs:
           git init
           git remote add gitflic git@gitflic.ru:simple-charge/${{ github.event.repository.name }}.git
           echo $(cat .git/config) 
-          git branch -m main master
           git push -u gitflic --all
       
       - name: Test get variable exported by push-to-another-repository
