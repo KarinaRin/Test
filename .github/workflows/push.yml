@@ -34,14 +34,8 @@ jobs:
       - name: Pushes to another repository
         shell: bash
         run: |
-          # git init
+          git init
           git remote add gitflic git@gitflic.ru:simple-charge/test.git
-          # git config --global user.email "commit-from-github@liis.su"
-          # git config --global user.name "commit-from-github-liis-su"
-          # rm -r .github
-          # git add .
-          # git commit -m 'fix'
-          git fetch origin
           GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push --force gitflic ${{ github.ref }}:master
       
       - name: Test get variable exported by push-to-another-repository
