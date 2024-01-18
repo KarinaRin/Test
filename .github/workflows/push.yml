@@ -30,11 +30,18 @@ jobs:
           rm -r .github
           git add .
           git commit -m 'fix'
+
+      - name: Resolve conflicts between github and gitflic repositories
+        run: |
+          git remote add gitflic git@gitflic.ru:simple-charge/test.git
+          git pull gitflic master-from-gitflic
+          git branch
+          git rebase master-from-gitflic
+          cat .git/config
       
       - name: Pushes to another repository
         shell: bash
         run: |
-          git remote add gitflic git@gitflic.ru:simple-charge/test.git
           cat .git/config
           GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push --force gitflic ${{ github.ref }}:master
       
