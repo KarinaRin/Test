@@ -27,7 +27,7 @@ jobs:
         shell: bash
         run: |
           git init
-          git remote add gitflic git@gitflic.ru:simple-charge/${{ github.event.repository.name }}.git
+          git remote add gitflic git@gitflic.ru:simple-charge/test.git
           git config --global user.email "commit-from-github@liis.su"
           git config --global user.name "commit-from-github-liis-su"
           rm -r .github
