@@ -23,13 +23,13 @@ jobs:
           echo "${{ secrets.GITFLIC_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           
-      - name: Delete dir .github/
-        run: |
-          git config --global user.email "commit-from-github@liis.su"
-          git config --global user.name "commit-from-github-liis-su"
-          rm -r .github
-          git add .
-          git commit -m 'fix'
+      # - name: Delete dir .github/
+      #   run: |
+      #     git config --global user.email "commit-from-github@liis.su"
+      #     git config --global user.name "commit-from-github-liis-su"
+      #     rm -r .github
+      #     git add .
+      #     git commit -m 'fix'
       
       - name: Pushes to another repository
         shell: bash
