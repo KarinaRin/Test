@@ -26,7 +26,7 @@ jobs:
           git init
           git remote add gitflic git@gitflic.ru:simple-charge/${{ github.event.repository.name }}.git
           echo $(cat .git/config) 
-          git push -u gitflic --all
+          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push -u gitflic --all
       
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
