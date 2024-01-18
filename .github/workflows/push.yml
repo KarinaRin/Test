@@ -24,9 +24,8 @@ jobs:
         shell: bash
         run: |
           git init
-          echo 'cat .git/config'
           git remote add gitflic git@gitflic.ru:simple-charge/${{ github.event.repository.name }}.git
-          git branch -m master-gpn-onpremise master
+          git branch -m main master
           git push -u gitflic --all
       
       - name: Test get variable exported by push-to-another-repository
