@@ -33,7 +33,7 @@ jobs:
         run: |
           git remote add gitflic-1 https://gitflic.ru/project/simple-charge/test.git
           git checkout -b master-from-gitflic
-          git pull gitflic master
+          git pull gitflic-1 master
           git branch
           git checkout ${{ github.ref }}
           git rebase master-from-gitflic
