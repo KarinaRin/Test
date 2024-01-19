@@ -34,14 +34,12 @@ jobs:
           git rebase master-from-gitflic
 
       - name: Delete dir .github/ if exist
-        if: |
-          if [ -d ".github" ]; then
-          echo "True"
-          fi
         run: |
-          rm -r .github
-          git add .
-          git commit -m 'fix'
+          if [ -d "$DIRECTORY" ]; then
+            rm -r .github
+            git add .
+            git commit -m 'fix'
+          fi
       
       - name: Pushes to another repository
         shell: bash
