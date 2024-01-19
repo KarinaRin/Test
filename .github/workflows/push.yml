@@ -23,9 +23,10 @@ jobs:
 
       - name: Resolve conflicts between github and gitflic repositories
         run: |
-          git remote add gitflic-1 'https://commit-from-github-liis-su:${{ secrets.GITFLIC_PASSWORD }}@gitflic.ru/project/simple-charge/test.git'
+          # git remote add gitflic-1 'https://commit-from-github-liis-su:${{ secrets.GITFLIC_PASSWORD }}@gitflic.ru/project/simple-charge/test.git'
+          git remote add gitflic git@gitflic.ru:simple-charge/test.git
           cat .git/config
-          git branch master-from-gitflic gitflic-1/master
+          git branch master-from-gitflic gitflic/master
           git rebase master-from-gitflic
           l
           git branch
@@ -41,7 +42,7 @@ jobs:
       - name: Pushes to another repository
         shell: bash
         run: |
-          git remote add gitflic git@gitflic.ru:simple-charge/test.git
+          # git remote add gitflic git@gitflic.ru:simple-charge/test.git
           cat .git/config
           GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push --force gitflic ${{ github.ref }}:master
       
