@@ -33,10 +33,12 @@ jobs:
           # git branch master-from-gitflic --track gitflic/master
           git rebase master-from-gitflic
 
-      - name: Delete dir .github/
+      - name: Delete dir .github/ if exist
+        if: |
+          if [ -d ".github" ]; then
+          echo "True"
+          fi
         run: |
-          git config --global user.email "commit-from-github@liis.su"
-          git config --global user.name "commit-from-github-liis-su"
           rm -r .github
           git add .
           git commit -m 'fix'
