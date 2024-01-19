@@ -26,7 +26,7 @@ jobs:
           # git remote add gitflic-1 'https://commit-from-github-liis-su:${{ secrets.GITFLIC_PASSWORD }}@gitflic.ru/project/simple-charge/test.git'
           git remote add gitflic git@gitflic.ru:simple-charge/test.git
           cat .git/config
-          git branch master-from-gitflic gitflic/master
+          git branch master-from-gitflic --track gitflic/master
           git rebase master-from-gitflic
           l
           git branch
