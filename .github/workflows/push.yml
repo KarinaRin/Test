@@ -28,7 +28,6 @@ jobs:
           git fetch gitflic-1 master:master-from-gitflic
           # git branch master-from-gitflic gitflic/master
           git branch
-          l
           # git branch master-from-gitflic --track gitflic/master
           git rebase master-from-gitflic
 
