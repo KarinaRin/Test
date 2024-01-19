@@ -35,7 +35,7 @@ jobs:
 
       - name: Delete dir .github/ if exist
         run: |
-          if [ -d "$DIRECTORY" ]; then
+          if [ -d ".github" ]; then
             rm -r .github
             git add .
             git commit -m 'fix'
