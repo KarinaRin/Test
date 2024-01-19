@@ -21,25 +21,25 @@ jobs:
           echo "${{ secrets.GITFLIC_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
-      - name: Resolve conflicts between github and gitflic repositories
-        run: |
-          git config --global user.email "commit-from-github@liis.su"
-          git config --global user.name "commit-from-github-liis-su"
-          git remote add gitflic-1 'https://commit-from-github-liis-su:${{ secrets.GITFLIC_PASSWORD }}@gitflic.ru/project/simple-charge/test.git'
-          # git remote add gitflic git@gitflic.ru:simple-charge/test.git
-          git fetch gitflic-1 master:master-from-gitflic
-          # git branch master-from-gitflic gitflic/master
-          git branch
-          # git branch master-from-gitflic --track gitflic/master
-          git rebase master-from-gitflic
+      # - name: Resolve conflicts between github and gitflic repositories
+      #   run: |
+      #     # git config --global user.email "commit-from-github@liis.su"
+      #     # git config --global user.name "commit-from-github-liis-su"
+      #     # git remote add gitflic-1 'https://commit-from-github-liis-su:${{ secrets.GITFLIC_PASSWORD }}@gitflic.ru/project/simple-charge/test.git'
+      #     git remote add gitflic git@gitflic.ru:simple-charge/test.git
+      #     GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git fetch gitflic-1 master:master-from-gitflic
+      #     git rebase master-from-gitflic
 
       - name: Delete dir .github/ if exist
         run: |
-          if [ -d ".github" ]; then
-            rm -r .github
-            git add .
-            git commit -m 'fix'
-          fi
+          rm -r .github
+          git add .
+          git commit -m 'fix'
+          # if [ -d ".github" ]; then
+          #   rm -r .github
+          #   git add .
+          #   git commit -m 'fix'
+          # fi
       
       - name: Pushes to another repository
         shell: bash
