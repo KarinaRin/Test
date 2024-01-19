@@ -37,6 +37,7 @@ jobs:
           rm -r .github
           git add .
           git commit -m 'fix'
+          git log
           # if [ -d ".github" ]; then
           #   rm -r .github
           #   git add .
